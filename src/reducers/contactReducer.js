@@ -51,13 +51,18 @@ export default function contactReducer(state = initState,action){
            return state;
           break;
           case SHOW_CONTACT:
-            return state;
+            return {
+                'id'    : '1',
+                'name'  : 'David Warner',
+                'email' : 'david@gmail.com',
+                'phone' : '4454854552' 
+            }
           break;
           case CREATE_CONTACT:
-            return state;
+            return [action.payload,...state];
           break;
           case UPDATE_CONTACT:
-            return state.map( contact => contact.id == action.payload.id ? { ...contact } : {...contact} );
+            return state;
           break;
           case DELETE_CONTACT:
             return state.filter( contact => contact.id != action.payload );
