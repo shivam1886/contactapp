@@ -9,13 +9,13 @@ const Contacts = () => {
 
     const dispatch = useDispatch();
 
-     useEffect(function(){
-         dispatch(getContacts());
-     },[])
+     const deleteContact1 = (id,e) => {
+        dispatch(deleteContact(id));
+    }
 
-     const deleteContact = (e) => {
-         console.log(e.target.getAttribute('data-id'));
-     }
+    useEffect(()=>{
+        dispatch(getContacts);
+    },[])
 
     return (
         <div className="table-responsive">
@@ -40,7 +40,7 @@ const Contacts = () => {
                                     <td>{contact.name}</td>
                                     <td>{contact.phone}</td>
                                     <td>{contact.email}</td>
-                                    <td><button className="btn btn-danger" data-id={contact.id} onClick={deleteContact}>Delete</button></td>
+                                    <td><button className="btn btn-danger" onClick={deleteContact1.bind(this,contact.id)}>Delete</button></td>
                                 </tr>
                             )
                        })

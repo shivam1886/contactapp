@@ -1,11 +1,54 @@
 import { GET_CONTACTS ,SHOW_CONTACT,CREATE_CONTACT,UPDATE_CONTACT,DELETE_CONTACT } from "../types/contactTypes";
 
-const initState = [];
+const initState = [
+  {
+    'id'    : '1',
+    'name'  : 'David Warner',
+    'email' : 'david@gmail.com',
+    'phone' : '4454854552' 
+  },
+  {
+    'id'    : '2',
+    'name'  : 'Steave Smith',
+    'email' : 'steave@gmail.com',
+    'phone' : '4443454552' 
+  },
+  {
+    'id'    : '3',
+    'name'  : 'Aron Finch',
+    'email' : 'aron@gmail.com',
+    'phone' : '4434354552' 
+  },
+  {
+    'id'    : '4',
+    'name'  : 'Usman Khaja',
+    'email' : 'usman@gmail.com',
+    'phone' : '4434354223552' 
+  },
+  {
+    'id'    : '5',
+    'name'  : 'Jemes Fokner',
+    'email' : 'jemes@gmail.com',
+    'phone' : '4434354552' 
+  },
+  {
+    'id'    : '6',
+    'name'  : 'Glenn Mixwell',
+    'email' : 'glen@gmail.com',
+    'phone' : '443435453452' 
+  },
+  {
+    'id'    : '7',
+    'name'  : 'Mitchal Stark',
+    'email' : 'mithaal@gmail.com',
+    'phone' : '443434354552' 
+  }
+];
 
 export default function contactReducer(state = initState,action){
     switch(action.type) {
         case GET_CONTACTS:
-           return action.payload;
+           return state;
           break;
           case SHOW_CONTACT:
             return state;
@@ -14,13 +57,10 @@ export default function contactReducer(state = initState,action){
             return state;
           break;
           case UPDATE_CONTACT:
-            return state;
+            return state.map( contact => contact.id == action.payload.id ? { ...contact } : {...contact} );
           break;
           case DELETE_CONTACT:
-            state.filter(function(contact){
-                if(contact.id != action.payload)
-                    return true;
-            })
+            return state.filter( contact => contact.id != action.payload );
           break;
         default:
             return state;
